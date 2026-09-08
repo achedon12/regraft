@@ -9,6 +9,7 @@
   <a href="https://github.com/achedon12/regraft/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/achedon12/regraft/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
   <a href="https://nodejs.org"><img alt="Node" src="https://img.shields.io/node/v/regraft"></a>
+  <a href="https://github.com/marketplace/actions/regraft"><img alt="GitHub Marketplace" src="https://img.shields.io/badge/marketplace-regraft-2ea043?logo=github"></a>
 </p>
 
 ---

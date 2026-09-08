@@ -1,6 +1,6 @@
 {
   "name": "regraft",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Keep repositories created from a GitHub template up to date with it. Cherry-picks the template's new commits onto repos that share no common ancestor with it.",
   "keywords": [
     "template",

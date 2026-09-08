@@ -6,6 +6,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-09-08
+
+First stable release. The command surface — `init`, `status`, `apply`, `doctor`
+— and the `.regraft.yml` schema are now covered by semantic versioning, and the
+GitHub Action can be pinned to `@v1`.
+
+Nothing changed in behaviour since 0.1.2; this marks the interface as settled
+rather than adding to it.
+
 ## [0.1.2] — 2026-09-08
 
 ### Added
@@ -56,7 +65,8 @@ First public release.
   repo exactly where it started.
 - GitHub Action that opens a pull request with the pending commits.
 
-[Unreleased]: https://github.com/achedon12/regraft/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/achedon12/regraft/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/achedon12/regraft/compare/v0.1.2...v1.0.0
 [0.1.2]: https://github.com/achedon12/regraft/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/achedon12/regraft/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/achedon12/regraft/releases/tag/v0.1.0
