@@ -18,7 +18,7 @@ jobs:
           - acme/service-b
           - acme/service-c
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repo }}
           token: ${{ secrets.FLEET_TOKEN }}   # a PAT that can read the fleet

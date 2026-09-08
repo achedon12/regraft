@@ -180,7 +180,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: { contents: write, pull-requests: write }
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }   # regraft needs the full history
       - uses: achedon12/regraft@v1
         with:

@@ -29,7 +29,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0   # regraft needs the full history, not a shallow clone
 
@@ -95,7 +95,7 @@ jobs:
           - acme/service-b
           - acme/service-c
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repo }}
           token: ${{ secrets.FLEET_TOKEN }}
