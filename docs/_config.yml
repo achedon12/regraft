@@ -16,12 +16,15 @@ search:
   heading_level: 2
   previews: 2
 
-# jekyll-seo-tag turns these into og:image and the large Twitter/Slack card.
-# Setting them here rather than hand-writing the meta tags avoids emitting each
-# one twice.
-image: /assets/og-image.png
-twitter:
-  card: summary_large_image
+# jekyll-seo-tag reads the card image from a page's front matter, not from a
+# site-level key, so it is applied to every page through Jekyll defaults. Given
+# an image, seo-tag emits og:image and upgrades the Twitter card to
+# summary_large_image on its own.
+defaults:
+  - scope:
+      path: ''
+    values:
+      image: /assets/og-image.png
 
 author: achedon12
 lang: en
