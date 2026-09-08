@@ -1,3 +1,10 @@
+# Note: crawlers only honour robots.txt at the root of a host, so on
+# achedon12.github.io this file is never read — the site lives under /regraft/,
+# and the host root belongs to a repository that does not exist. It is kept
+# because it becomes live the day the docs move to their own domain, and
+# because nothing about it is harmful in the meantime. The sitemap is submitted
+# to Search Console directly.
+
 User-agent: *
 Allow: /
 
