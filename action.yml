@@ -1,5 +1,5 @@
 name: 'regraft'
-description: 'Graft a template repository new commits onto this repo and open pull requests with them.'
+description: "Keep a repo made from a GitHub template up to date with it: graft the template's new commits, and open the pull requests."
 author: 'achedon12'
 
 branding:

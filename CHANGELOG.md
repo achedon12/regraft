@@ -6,6 +6,25 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-09-08
+
+### Added
+
+- The documentation site has an icon and a social card, so a link to it no
+  longer previews as a blank box wherever it is shared.
+
+### Changed
+
+- Clearer wording for the action's description, which is what the GitHub
+  Marketplace listing shows.
+
+### Fixed
+
+- The release workflow fired on any `v*` tag, so pushing the moving `v1` tag
+  that consumers pin the action to started a run that tried to republish the
+  current version. Releases now trigger on full semver tags only, and a
+  release moves the major tag itself.
+
 ## [0.1.1] — 2026-09-08
 
 ### Fixed
@@ -37,6 +56,7 @@ First public release.
   repo exactly where it started.
 - GitHub Action that opens a pull request with the pending commits.
 
-[Unreleased]: https://github.com/achedon12/regraft/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/achedon12/regraft/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/achedon12/regraft/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/achedon12/regraft/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/achedon12/regraft/releases/tag/v0.1.0
