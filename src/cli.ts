@@ -3,7 +3,8 @@ import { parseArgs } from 'node:util';
 import { createRequire } from 'node:module';
 import { Git } from './core/git.ts';
 import { findConfig, parseConfig } from './core/config.ts';
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { initCommand } from './commands/init.ts';
 import { statusCommand } from './commands/status.ts';
 import { applyCommand } from './commands/apply.ts';
@@ -156,9 +157,25 @@ function gitSettings(cwd: string): { safeDirectory: boolean; ignoreFileMode: boo
   }
 }
 
-const isMain = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+/**
+ * Whether this file is the entry point.
+ *
+ * Both sides go through `realpath` because npm installs the bin as a symlink,
+ * and node resolves that symlink for `import.meta.url` but leaves `argv[1]`
+ * pointing at the link. Comparing them naively makes an installed CLI decide it
+ * was merely imported, and exit having done nothing at all.
+ */
+function isMainModule(): boolean {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try {
+    return realpathSync(entry) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
 
-if (isMain) {
+if (isMainModule()) {
   try {
     process.exitCode = run(process.argv.slice(2));
   } catch (error) {

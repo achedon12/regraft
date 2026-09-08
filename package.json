@@ -1,6 +1,6 @@
 {
   "name": "regraft",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keep repositories created from a GitHub template up to date with it. Cherry-picks the template's new commits onto repos that share no common ancestor with it.",
   "keywords": [
     "template",
@@ -48,7 +48,8 @@
     "test": "node --test",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "pretest": "npm run build"
   },
   "dependencies": {
     "picocolors": "^1.1.1",

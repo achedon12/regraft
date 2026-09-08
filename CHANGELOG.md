@@ -6,6 +6,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-09-08
+
+### Fixed
+
+- The installed CLI did nothing at all. npm links the binary as a symlink, and
+  node resolves that symlink for `import.meta.url` but not for `argv[1]`, so the
+  entry-point check never matched and the process exited silently. Running
+  `dist/cli.js` directly — which every test did — was the one path that hid it.
+  The CLI is now exercised through a symlink in the suite.
+
 ## [0.1.0] — 2026-09-08
 
 First public release.
@@ -27,5 +37,6 @@ First public release.
   repo exactly where it started.
 - GitHub Action that opens a pull request with the pending commits.
 
-[Unreleased]: https://github.com/achedon12/regraft/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/achedon12/regraft/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/achedon12/regraft/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/achedon12/regraft/releases/tag/v0.1.0
