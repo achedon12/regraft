@@ -33,9 +33,13 @@ jobs:
           git config --global user.email "ci@example.com"
           git config --global init.defaultBranch main
 
+      # Trusted publishing needs npm 11.5.1 or newer; the runner ships npm 10.
+      - name: Use an npm that can publish through OIDC
+        run: npm install -g npm@latest
+
       - run: npm ci
-      - run: npm test
       - run: npm run build
+      - run: npm test
 
       - name: The tag must match the version in package.json
         if: startsWith(github.ref, 'refs/tags/v')
@@ -47,10 +51,11 @@ jobs:
             exit 1
           fi
 
+      # No token: npm trusts this repository, this workflow file and this
+      # environment through OIDC, and mints a short-lived credential for the
+      # run. There is no secret to store, rotate or leak.
       - name: Publish
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create the GitHub release
         if: startsWith(github.ref, 'refs/tags/v')
