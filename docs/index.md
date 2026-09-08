@@ -59,7 +59,10 @@ your history instead of collapsing into one opaque "sync with template" commit.
 
 ## Used in production
 
-regraft is extracted from the tooling that keeps **106 production websites** in
-sync with a shared template. The two protection lists, the all-or-nothing
-rollback and the merge-commit rule are not design guesses — each one is a
-production incident that is no longer possible.
+regraft is extracted from the tooling that keeps a fleet of production websites
+in sync with one shared template: **68 sites, running 28 different versions of
+that template at once** — some still on 1.x while the template is on 4.35.
+
+The two protection lists, the all-or-nothing rollback and the merge-commit rule
+are not design guesses — each one is a production incident that is no longer
+possible.

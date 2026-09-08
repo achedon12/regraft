@@ -225,10 +225,14 @@ already there.
 
 ## Used in production
 
-regraft is extracted from the tooling that keeps **106 production websites** in
-sync with a shared Next.js template. The two protection lists, the all-or-nothing
-rollback and the `--no-merges` rule are not design guesses — each one is a
-production incident that is no longer possible.
+regraft is extracted from the tooling that keeps a fleet of production websites
+in sync with one shared template: **68 sites, running 28 different versions of
+that template at once** — some still on 1.x while the template is on 4.35.
+
+That spread is the problem in one number, and it is what a one-time copy costs
+you. The two protection lists, the all-or-nothing rollback and the merge-commit
+rule are not design guesses — each one is a production incident that is no
+longer possible.
 
 ## Contributing
 
