@@ -37,7 +37,7 @@ heading_anchors: true
 # Paste the code from Search Console > Add property > HTML tag. It is a
 # verification token, not a tracker: no script, no cookie, nothing sent about
 # visitors. It only proves ownership so the search performance report unlocks.
-google_site_verification: ''
+google_site_verification: 'sfpqyLks88mzFsBGPMgSJI0BO6-7PdtQX4uYTHtrcnw'
 
 plugins:
   - jekyll-remote-theme
