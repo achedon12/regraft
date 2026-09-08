@@ -1,0 +1,134 @@
+name: 'regraft'
+description: 'Graft a template repository new commits onto this repo and open pull requests with them.'
+author: 'achedon12'
+
+branding:
+  icon: 'git-branch'
+  color: 'green'
+
+inputs:
+  # ---- what to graft -------------------------------------------------------
+  version:
+    description: 'Version of regraft to run (npm semver range, or "latest").'
+    required: false
+    default: 'latest'
+  from:
+    description: 'Start from this template commit instead of the recorded one.'
+    required: false
+  limit:
+    description: 'Graft at most this many commits (strategy: single). For a long backlog.'
+    required: false
+  working-directory:
+    description: 'Directory to run in, for a repo that is not at the root.'
+    required: false
+    default: '.'
+
+  # ---- how to open pull requests ------------------------------------------
+  create-pull-request:
+    description: 'Open pull requests. Set false to only report drift in the job summary.'
+    required: false
+    default: 'true'
+  strategy:
+    description: |
+      How the pending commits are split into pull requests.
+        single      one pull request containing every pending commit
+        per-commit  one pull request per template commit, Dependabot-style
+    required: false
+    default: 'single'
+  open-pull-requests-limit:
+    description: 'With strategy=per-commit, the most pull requests to have open at once.'
+    required: false
+    default: '5'
+  branch-prefix:
+    description: 'Prefix for the branches this action creates.'
+    required: false
+    default: 'regraft'
+  base:
+    description: 'Branch the pull requests target. Defaults to the checked-out branch.'
+    required: false
+  title-prefix:
+    description: 'Put in front of every pull request title, e.g. "chore(template): ".'
+    required: false
+    default: ''
+  labels:
+    description: 'Comma-separated labels for the pull requests.'
+    required: false
+    default: 'template-sync'
+  reviewers:
+    description: 'Comma-separated users or teams to request a review from.'
+    required: false
+  assignees:
+    description: 'Comma-separated users to assign.'
+    required: false
+  draft:
+    description: 'Open the pull requests as drafts.'
+    required: false
+    default: 'false'
+  auto-merge:
+    description: 'Enable auto-merge (squash). Ignored, with a warning, if the repo forbids it.'
+    required: false
+    default: 'false'
+
+  # ---- identity ------------------------------------------------------------
+  token:
+    description: 'Token used to push branches and open pull requests.'
+    required: false
+    default: ${{ github.token }}
+  git-name:
+    description: 'Committer name for the graft commits.'
+    required: false
+    default: 'github-actions[bot]'
+  git-email:
+    description: 'Committer email for the graft commits.'
+    required: false
+    default: '41898282+github-actions[bot]@users.noreply.github.com'
+
+outputs:
+  behind:
+    description: 'Template commits this repo was missing before the run.'
+    value: ${{ steps.sync.outputs.behind }}
+  applied:
+    description: 'Commits actually grafted.'
+    value: ${{ steps.sync.outputs.applied }}
+  pull-requests:
+    description: 'JSON array of the pull request URLs opened or updated.'
+    value: ${{ steps.sync.outputs.pull-requests }}
+  pull-request-url:
+    description: 'The first pull request URL, for the common single-PR case.'
+    value: ${{ steps.sync.outputs.pull-request-url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check the checkout
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+          echo "::error::regraft needs the full history. Add 'fetch-depth: 0' to actions/checkout."
+          exit 1
+        fi
+
+    - name: Sync from the template
+      id: sync
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        INPUT_VERSION: ${{ inputs.version }}
+        INPUT_FROM: ${{ inputs.from }}
+        INPUT_LIMIT: ${{ inputs.limit }}
+        INPUT_CREATE_PULL_REQUEST: ${{ inputs.create-pull-request }}
+        INPUT_STRATEGY: ${{ inputs.strategy }}
+        INPUT_OPEN_PULL_REQUESTS_LIMIT: ${{ inputs.open-pull-requests-limit }}
+        INPUT_BRANCH_PREFIX: ${{ inputs.branch-prefix }}
+        INPUT_BASE: ${{ inputs.base }}
+        INPUT_TITLE_PREFIX: ${{ inputs.title-prefix }}
+        INPUT_LABELS: ${{ inputs.labels }}
+        INPUT_REVIEWERS: ${{ inputs.reviewers }}
+        INPUT_ASSIGNEES: ${{ inputs.assignees }}
+        INPUT_DRAFT: ${{ inputs.draft }}
+        INPUT_AUTO_MERGE: ${{ inputs.auto-merge }}
+        INPUT_GIT_NAME: ${{ inputs.git-name }}
+        INPUT_GIT_EMAIL: ${{ inputs.git-email }}
+      run: bash "${{ github.action_path }}/scripts/action-sync.sh"
