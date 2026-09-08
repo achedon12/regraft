@@ -34,6 +34,11 @@ back_to_top_text: Back to top
 
 heading_anchors: true
 
+# Paste the code from Search Console > Add property > HTML tag. It is a
+# verification token, not a tracker: no script, no cookie, nothing sent about
+# visitors. It only proves ownership so the search performance report unlocks.
+google_site_verification: ''
+
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
