@@ -19,7 +19,7 @@ jobs:
       # here, from this commit, rather than on someone's laptop.
       id-token: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v5
         with:
