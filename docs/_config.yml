@@ -16,6 +16,16 @@ search:
   heading_level: 2
   previews: 2
 
+# jekyll-seo-tag turns these into og:image and the large Twitter/Slack card.
+# Setting them here rather than hand-writing the meta tags avoids emitting each
+# one twice.
+image: /assets/og-image.png
+twitter:
+  card: summary_large_image
+
+author: achedon12
+lang: en
+
 aux_links:
   GitHub: https://github.com/achedon12/regraft
   npm: https://www.npmjs.com/package/regraft
