@@ -1,0 +1,61 @@
+{
+  "name": "regraft",
+  "version": "0.1.0",
+  "description": "Keep repositories created from a GitHub template up to date with it. Cherry-picks the template's new commits onto repos that share no common ancestor with it.",
+  "keywords": [
+    "template",
+    "github-template",
+    "monorepo-alternative",
+    "cherry-pick",
+    "template-sync",
+    "scaffolding",
+    "boilerplate",
+    "git",
+    "cli",
+    "devex",
+    "drift",
+    "upstream"
+  ],
+  "homepage": "https://github.com/achedon12/regraft#readme",
+  "bugs": "https://github.com/achedon12/regraft/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achedon12/regraft.git"
+  },
+  "license": "MIT",
+  "author": "achedon12",
+  "type": "module",
+  "bin": {
+    "regraft": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "test": "node --test",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1",
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

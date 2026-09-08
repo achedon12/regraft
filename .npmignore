@@ -1,0 +1,7 @@
+src/
+test/
+docs/
+examples/
+.github/
+tsconfig*.json
+action.yml
