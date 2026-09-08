@@ -1,0 +1,29 @@
+# A drift dashboard across many repositories, from one place. Reports only —
+# drop `create-pull-request: false` to open a pull request on every repo.
+name: Fleet drift
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo:
+          - acme/service-a
+          - acme/service-b
+          - acme/service-c
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: ${{ matrix.repo }}
+          token: ${{ secrets.FLEET_TOKEN }}   # a PAT that can read the fleet
+          fetch-depth: 0
+
+      - uses: achedon12/regraft@v1
+        with:
+          create-pull-request: false

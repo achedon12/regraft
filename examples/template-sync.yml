@@ -1,0 +1,24 @@
+# Copy this to .github/workflows/template-sync.yml in a repo made from a
+# template. One pull request a week, only when the template actually moved.
+name: Template sync
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Mondays, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # regraft needs the full history
+
+      - uses: achedon12/regraft@v1
+        with:
+          labels: template-sync

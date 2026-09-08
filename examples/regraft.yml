@@ -1,0 +1,31 @@
+# An annotated .regraft.yml for a typical web project.
+# Drop it at the root of a repo created from a template.
+
+template:
+  url: https://github.com/acme/service-template.git
+  ref: main
+
+# Written by `regraft init`. A starting point, not a ceiling: once a graft has
+# run, the Regraft-source trailer in your history takes over.
+base: a1b2c3d4e5f67890a1b2c3d4e5f67890a1b2c3d4
+
+protect:
+  # Restored from this repo after EVERY grafted commit. Your identity:
+  # unmergeable by nature, and a template commit can rewrite these cleanly
+  # without any conflict for you to notice.
+  owned:
+    - public/logo.svg
+    - public/favicon.ico
+    - .env.example
+    - docker-compose.yml
+
+  # This repo wins, but only when a commit actually conflicts. For files that
+  # are mostly the template's and partly yours.
+  winsOnConflict:
+    - src/styles/theme.css
+    - locales/
+
+exclude:
+  # The template's own release commits mean nothing here.
+  messages:
+    - '^chore\(release\)'

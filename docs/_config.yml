@@ -1,0 +1,45 @@
+title: regraft
+description: >-
+  Keep repositories created from a GitHub template up to date with it.
+  regraft replays the template's new commits as patches, keeping their original
+  authors, while protecting the files that make each repo its own.
+url: https://achedon12.github.io
+baseurl: /regraft
+
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+
+# The docs are the source of truth for both GitHub and the published site, so
+# nothing here may make the raw markdown worse to read.
+color_scheme: dark
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 2
+
+aux_links:
+  GitHub: https://github.com/achedon12/regraft
+  npm: https://www.npmjs.com/package/regraft
+aux_links_new_tab: true
+
+nav_external_links:
+  - title: regraft on GitHub
+    url: https://github.com/achedon12/regraft
+
+footer_content: >-
+  Extracted from the tooling that keeps 106 production sites in sync with one
+  template. MIT licensed.
+
+back_to_top: true
+back_to_top_text: Back to top
+
+heading_anchors: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor

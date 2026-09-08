@@ -1,0 +1,28 @@
+# One pull request per template commit, Dependabot-style: each reviewable and
+# mergeable on its own, capped at three open at a time.
+name: Template sync (per commit)
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: achedon12/regraft@v1
+        with:
+          strategy: per-commit
+          open-pull-requests-limit: 3
+          title-prefix: 'chore(template): '
+          labels: template-sync
+          reviewers: your-github-handle
