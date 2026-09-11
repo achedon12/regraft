@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/regraft"><img alt="npm" src="https://img.shields.io/npm/v/regraft?color=%23cb3837&label=npm"></a>
+  <a href="https://www.npmjs.com/package/regraft"><img alt="downloads" src="https://img.shields.io/npm/d18m/regraft?color=%23cb3837"></a>
   <a href="https://github.com/achedon12/regraft/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/achedon12/regraft/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
   <a href="https://nodejs.org"><img alt="Node" src="https://img.shields.io/node/v/regraft"></a>
